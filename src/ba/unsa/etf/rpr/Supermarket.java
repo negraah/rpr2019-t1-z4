@@ -1,44 +1,39 @@
 package ba.unsa.etf.rpr;
 
-private class Supermarket {
+public class Supermarket {
     public Artikl[] a = new Artikl[1000];
     public Korpa korpa;
     private String k;
-    Supermarket(Artikl[] b, Korpa k, String l){
-        for(int i=0; i<1000; i++){
-            a[i].naziv_proizvoda = b[i].naziv_proizvoda;
-            a[i].cijena = b[i].cijena;
-            a[i].kod = b[i].kod;
-        }
-        korpa = k;
-        k = l;
-    }
+    private int vel = 0;
+
     public void dodajArtikl(Artikl neki_artikl) {
-        int i = 0;
-        while (a[i] != 0) {
-            i++;
+        if(vel<1000){
+            a[vel] = new Artikl(neki_artikl.getNaziv(), neki_artikl.getCijena(), neki_artikl.getKod());
+            vel++;
         }
-        a[i] = neki_artikl;
     }
 
     public Artikl[] getArtikli() {
-        return artikl.naziv_proizvoda, artikl.cijena, artikl.kod;
+        return a;
     }
 
     public Artikl izbaciArtiklSaKodom(String kod) {
-        for(int i=0; i<1000; i++) {
-            if (a[i].kod.equals(a[i].kod)){
-                int j = i;
-                int n = i;
-                while(j!=1000-1) {
-                    a[j] = a[j + 1];
-                    j++;
+        int n = 0;
+        for(int i=0; i<vel; i++) {
+            if (a[i].getKod().equals(kod)){
+                n = i;
+                Artikl artikl = new Artikl(a[i].getNaziv(),a[i].getCijena(),a[i].getKod());
+                for(int j = i; j < vel-1; j++){
+                    a[j] = a[j+1];
                 }
+                vel--;
+                return artikl;
             }
         }
-        return a[n];
+        //Artikl artikl = a[n];
+        return null;
     }
 
 
 }
-}
+

@@ -7,10 +7,17 @@ public class Korpa  {
 
     public boolean dodajArtikl(Artikl artiklic) {
        if(vel<50){
-           a[vel++] = new Artikl(artiklic.getNaziv(), artiklic.getCijena(), artiklic.getKod());
+           a[vel] = new Artikl(artiklic.getNaziv(), artiklic.getCijena(), artiklic.getKod());
+           vel++;
+          // IspisiKorpu();
            return true;
        }
        return false;
+    }
+    public void IspisiKorpu(){
+        for(int i=0; i<vel; i++) {
+            System.out.println("Naziv: "+ a[i].getNaziv() + " Cijena: " + a[i].getCijena() + " Kod: " + a[i].getKod());
+        }
     }
 
     public Artikl[] getArtikli() {
